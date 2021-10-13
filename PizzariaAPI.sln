@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzariaAPI", "PizzariaAPI\PizzariaAPI.csproj", "{09DA1483-4887-4D16-9D98-8D21943BDA4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09DA1483-4887-4D16-9D98-8D21943BDA4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09DA1483-4887-4D16-9D98-8D21943BDA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09DA1483-4887-4D16-9D98-8D21943BDA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09DA1483-4887-4D16-9D98-8D21943BDA4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49CDE9A3-20E7-4CB3-8274-0CDDE7BE9DF9}
+	EndGlobalSection
+EndGlobal
