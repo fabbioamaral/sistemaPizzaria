@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace PizzariaAPI.Models
 {
-    public class PedidoDetalhes
+    public class PedidoProduto
     {
-        public int PedidoDetalhesId { get; set; }
+        public int PedidoProdutoId { get; set; }
         public int ProdutoId { get; set; }
         public Produto Produto { get; set; }
         public decimal DescontoNoItem { get; set; }

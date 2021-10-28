@@ -12,6 +12,6 @@ namespace PizzariaAPI.Models
         public decimal Preco { get; set; }
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
-        public ICollection<PedidoDetalhes> Pedidos { get; set; }
+        public ICollection<PedidoProduto> Pedidos { get; set; }
     }
 }

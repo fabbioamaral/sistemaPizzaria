@@ -16,7 +16,7 @@ namespace PizzariaAPI.Models
         public FormaDePagamento FormaDePagamento { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public ICollection<PedidoDetalhes> DetalhesDoPedido { get; set; }
+        public ICollection<PedidoProduto> DetalhesDoPedido { get; set; }
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
     }

@@ -9,7 +9,14 @@ namespace PizzariaAPI.Data
 {
     public class PizzariaContexto : DbContext
     {
-        
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<FormaDePagamento> FormasDePagamento { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source = FABBIO; Initial Catalog = ReiDoDelivery; Integrated Security = True");
@@ -37,12 +44,12 @@ namespace PizzariaAPI.Data
                 .HasForeignKey(p => p.FormaDePagamentoId);
 
             mB.Entity<Pedido>()
-                .HasMany<PedidoDetalhes>(p => p.DetalhesDoPedido)
+                .HasMany<PedidoProduto>(p => p.DetalhesDoPedido)
                 .WithOne(d => d.Pedido)
                 .HasForeignKey(d => d.PedidoId);
 
             mB.Entity<Produto>()
-                .HasMany<PedidoDetalhes>(p => p.Pedidos)
+                .HasMany<PedidoProduto>(p => p.Pedidos)
                 .WithOne(pd => pd.Produto)
                 .HasForeignKey(pd => pd.ProdutoId);
 
