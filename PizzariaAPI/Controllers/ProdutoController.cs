@@ -48,7 +48,7 @@ namespace PizzariaAPI.Controllers
         }
 
         //PUT: api/produtos/{id}
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult> PutProdutoAsync(int id, Produto produto)
         {
             var produtoASerAtualizado = await produtoRepository.GetProdutoAsync(id);
@@ -69,10 +69,10 @@ namespace PizzariaAPI.Controllers
         }
 
         //DELETE: api/produtos/{id}
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProdutoAsync(int id)
         {
-            var produtoASerDeletado = produtoRepository.DeleteProdutoAsync(id);
+            var produtoASerDeletado = produtoRepository.GetProdutoAsync(id);
 
             if (produtoASerDeletado == null)
                 return NotFound();
@@ -80,6 +80,5 @@ namespace PizzariaAPI.Controllers
             await produtoRepository.DeleteProdutoAsync(id);
             return NoContent();
         }
-
     }
 }

@@ -10,8 +10,8 @@ using PizzariaAPI.Data;
 namespace PizzariaAPI.Migrations
 {
     [DbContext(typeof(PizzariaContexto))]
-    [Migration("20211026232133_second")]
-    partial class second
+    [Migration("20211102143131_one")]
+    partial class one
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasKey("CategoriaId");
 
-                    b.ToTable("Categoria");
+                    b.ToTable("Categorias");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.Cliente", b =>
@@ -60,7 +60,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasKey("ClienteId");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.Endereco", b =>
@@ -103,7 +103,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasIndex("TaxaDeEntregaId");
 
-                    b.ToTable("Endereco");
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.FormaDePagamento", b =>
@@ -118,7 +118,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasKey("FormaDePagamentoId");
 
-                    b.ToTable("FormaDePagamento");
+                    b.ToTable("FormasDePagamento");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.Pedido", b =>
@@ -157,7 +157,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasIndex("FormaDePagamentoId");
 
-                    b.ToTable("Pedido");
+                    b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.PedidoProduto", b =>
@@ -205,7 +205,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Produto");
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.TaxaDeEntrega", b =>

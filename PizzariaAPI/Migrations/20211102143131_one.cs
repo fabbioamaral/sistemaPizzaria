@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PizzariaAPI.Migrations
 {
-    public partial class initial : Migration
+    public partial class one : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categoria",
+                name: "Categorias",
                 columns: table => new
                 {
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
@@ -17,11 +17,11 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.CategoriaId);
+                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cliente",
+                name: "Clientes",
                 columns: table => new
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
@@ -34,11 +34,11 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cliente", x => x.ClienteId);
+                    table.PrimaryKey("PK_Clientes", x => x.ClienteId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FormaDePagamento",
+                name: "FormasDePagamento",
                 columns: table => new
                 {
                     FormaDePagamentoId = table.Column<int>(type: "int", nullable: false)
@@ -47,7 +47,7 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FormaDePagamento", x => x.FormaDePagamentoId);
+                    table.PrimaryKey("PK_FormasDePagamento", x => x.FormaDePagamentoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,7 +65,7 @@ namespace PizzariaAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Produto",
+                name: "Produtos",
                 columns: table => new
                 {
                     ProdutoId = table.Column<int>(type: "int", nullable: false)
@@ -76,17 +76,17 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produto", x => x.ProdutoId);
+                    table.PrimaryKey("PK_Produtos", x => x.ProdutoId);
                     table.ForeignKey(
-                        name: "FK_Produto_Categoria_CategoriaId",
+                        name: "FK_Produtos_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
-                        principalTable: "Categoria",
+                        principalTable: "Categorias",
                         principalColumn: "CategoriaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Endereco",
+                name: "Enderecos",
                 columns: table => new
                 {
                     EnderecoId = table.Column<int>(type: "int", nullable: false)
@@ -103,15 +103,15 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Endereco", x => x.EnderecoId);
+                    table.PrimaryKey("PK_Enderecos", x => x.EnderecoId);
                     table.ForeignKey(
-                        name: "FK_Endereco_Cliente_ClienteId",
+                        name: "FK_Enderecos_Clientes_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Cliente",
+                        principalTable: "Clientes",
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Endereco_TaxaDeEntrega_TaxaDeEntregaId",
+                        name: "FK_Enderecos_TaxaDeEntrega_TaxaDeEntregaId",
                         column: x => x.TaxaDeEntregaId,
                         principalTable: "TaxaDeEntrega",
                         principalColumn: "TaxaDeEntregaId",
@@ -119,7 +119,7 @@ namespace PizzariaAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pedido",
+                name: "Pedidos",
                 columns: table => new
                 {
                     PedidoId = table.Column<int>(type: "int", nullable: false)
@@ -130,36 +130,36 @@ namespace PizzariaAPI.Migrations
                     DataPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FormaDePagamentoId = table.Column<int>(type: "int", nullable: false),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
-                    EnderecoId = table.Column<int>(type: "int", nullable: true)
+                    EnderecoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pedido", x => x.PedidoId);
+                    table.PrimaryKey("PK_Pedidos", x => x.PedidoId);
                     table.ForeignKey(
-                        name: "FK_Pedido_Cliente_ClienteId",
+                        name: "FK_Pedidos_Clientes_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Cliente",
+                        principalTable: "Clientes",
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pedido_Endereco_EnderecoId",
+                        name: "FK_Pedidos_Enderecos_EnderecoId",
                         column: x => x.EnderecoId,
-                        principalTable: "Endereco",
+                        principalTable: "Enderecos",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Pedido_FormaDePagamento_FormaDePagamentoId",
+                        name: "FK_Pedidos_FormasDePagamento_FormaDePagamentoId",
                         column: x => x.FormaDePagamentoId,
-                        principalTable: "FormaDePagamento",
+                        principalTable: "FormasDePagamento",
                         principalColumn: "FormaDePagamentoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PedidoDetalhes",
+                name: "PedidoProduto",
                 columns: table => new
                 {
-                    PedidoDetalhesId = table.Column<int>(type: "int", nullable: false)
+                    PedidoProdutoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProdutoId = table.Column<int>(type: "int", nullable: false),
                     DescontoNoItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -167,84 +167,84 @@ namespace PizzariaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PedidoDetalhes", x => x.PedidoDetalhesId);
+                    table.PrimaryKey("PK_PedidoProduto", x => x.PedidoProdutoId);
                     table.ForeignKey(
-                        name: "FK_PedidoDetalhes_Pedido_PedidoId",
+                        name: "FK_PedidoProduto_Pedidos_PedidoId",
                         column: x => x.PedidoId,
-                        principalTable: "Pedido",
+                        principalTable: "Pedidos",
                         principalColumn: "PedidoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PedidoDetalhes_Produto_ProdutoId",
+                        name: "FK_PedidoProduto_Produtos_ProdutoId",
                         column: x => x.ProdutoId,
-                        principalTable: "Produto",
+                        principalTable: "Produtos",
                         principalColumn: "ProdutoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Endereco_ClienteId",
-                table: "Endereco",
+                name: "IX_Enderecos_ClienteId",
+                table: "Enderecos",
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Endereco_TaxaDeEntregaId",
-                table: "Endereco",
+                name: "IX_Enderecos_TaxaDeEntregaId",
+                table: "Enderecos",
                 column: "TaxaDeEntregaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pedido_ClienteId",
-                table: "Pedido",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedido_EnderecoId",
-                table: "Pedido",
-                column: "EnderecoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedido_FormaDePagamentoId",
-                table: "Pedido",
-                column: "FormaDePagamentoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PedidoDetalhes_PedidoId",
-                table: "PedidoDetalhes",
+                name: "IX_PedidoProduto_PedidoId",
+                table: "PedidoProduto",
                 column: "PedidoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PedidoDetalhes_ProdutoId",
-                table: "PedidoDetalhes",
+                name: "IX_PedidoProduto_ProdutoId",
+                table: "PedidoProduto",
                 column: "ProdutoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produto_CategoriaId",
-                table: "Produto",
+                name: "IX_Pedidos_ClienteId",
+                table: "Pedidos",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_EnderecoId",
+                table: "Pedidos",
+                column: "EnderecoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_FormaDePagamentoId",
+                table: "Pedidos",
+                column: "FormaDePagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_CategoriaId",
+                table: "Produtos",
                 column: "CategoriaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PedidoDetalhes");
+                name: "PedidoProduto");
 
             migrationBuilder.DropTable(
-                name: "Pedido");
+                name: "Pedidos");
 
             migrationBuilder.DropTable(
-                name: "Produto");
+                name: "Produtos");
 
             migrationBuilder.DropTable(
-                name: "Endereco");
+                name: "Enderecos");
 
             migrationBuilder.DropTable(
-                name: "FormaDePagamento");
+                name: "FormasDePagamento");
 
             migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Categorias");
 
             migrationBuilder.DropTable(
-                name: "Cliente");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "TaxaDeEntrega");

@@ -19,7 +19,7 @@ namespace PizzariaAPI.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = FABBIO; Initial Catalog = ReiDoDelivery; Integrated Security = True");
+            optionsBuilder.UseSqlServer("Data Source = FABBIO; Initial Catalog = ReiDaPizza; Integrated Security = True");
         }
         protected override void OnModelCreating(ModelBuilder mB)
         {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PizzariaAPI.Models;
+using PizzariaAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,54 @@ using System.Threading.Tasks;
 
 namespace PizzariaAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("pedidos")]
     [ApiController]
     public class PedidoController : ControllerBase
     {
-        // GET: api/<PedidoController>
+        private readonly IPedidoRepository pedidoRepository;
+        public PedidoController(IPedidoRepository pedidoRepository)
+        {
+            this.pedidoRepository = pedidoRepository;
+        }
+        
+        // GET: api/pedidos
         [HttpGet]
-        public IEnumerable<string> GetPedidos()
+        public async Task<IEnumerable<Pedido>> GetPedidos()
         {
-            return new string[] { "value1", "value2" };
+            return await pedidoRepository.GetPedidosAsync();
         }
 
-        // GET api/<PedidoController>/5
+        // GET api/pedidos/{id}
         [HttpGet("{id}")]
-        public string GetPedido(int id)
+        public async Task<ActionResult<Pedido>> GetPedido(int id)
         {
-            return "value";
+            var pedido = await pedidoRepository.GetPedidoAsync(id);
+
+            if (pedido == null)
+                return NotFound();
+
+            return pedido;
         }
 
-        // POST api/<PedidoController>
+        // POST api/pedidos
         [HttpPost]
-        public void CriarPedido([FromBody] string value)
+        public async Task CriarPedido(Pedido pedido)
         {
+            await pedidoRepository.CreatePedidoAsync(pedido);
+            await pedidoRepository.SavePedido();
         }
 
-        // PUT api/<PedidoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PedidoController>/5
+        // DELETE api/pedidos
         [HttpDelete("{id}")]
-        public void DeletarPedido(int id)
+        public async Task<ActionResult> DeletarPedido(int id)
         {
+            var pedido = await pedidoRepository.GetPedidoAsync(id);
+
+            if (pedido == null)
+                return NotFound();
+
+            await pedidoRepository.DeletePedidoAsync(id);
+            return NoContent();
         }
     }
 }
