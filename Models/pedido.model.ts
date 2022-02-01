@@ -1,5 +1,7 @@
 import { ICliente } from "./cliente.model";
 import { IEndereco } from "./endereco.model";
+import { IFormaDePagamento } from "./formadepagamento.model";
+import { IPedidoProduto } from "./pedidoproduto.model";
 
 export interface IPedido{
     id: number,
