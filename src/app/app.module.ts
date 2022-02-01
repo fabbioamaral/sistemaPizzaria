@@ -8,6 +8,8 @@ import { ProdutoComponent } from './produto/produto.component';
 import { CadastrarProdutoComponent } from './produto/cadastrar-produto/cadastrar-produto.component';
 import { EditarProdutoComponent } from './produto/editar-produto/editar-produto.component';
 import { RouterModule } from '@angular/router';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -15,17 +17,13 @@ import { RouterModule } from '@angular/router';
     ClientesComponent,
     ProdutoComponent,
     CadastrarProdutoComponent,
-    EditarProdutoComponent
+    EditarProdutoComponent,
+    HomePageComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([
-      {path:'',component:ProdutoComponent},
-      {path:'produtos', component:ProdutoComponent},
-      {path:'produtos/cadastrar-produto', component:CadastrarProdutoComponent},
-      {path: 'produtos/editar-produto/:id', component: EditarProdutoComponent}
-    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
