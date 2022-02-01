@@ -31,14 +31,20 @@ namespace PizzariaAPI.Repositories
 
         public async Task<Pedido> GetPedidoAsync(int id)
         {
-            return await _context.Pedidos.Include(p => p.FormaDePagamento).
-                Include(p => p.Cliente).Include(p => p.Endereco).FirstOrDefaultAsync(p=>p.PedidoId==id);
+            return await _context.Pedidos
+                .Include(p => p.FormaDePagamento)
+                .Include(p=>p.DetalhesDoPedido).ThenInclude(d=>d.Produto)
+                .Include(p => p.Endereco).ThenInclude(e=>e.Cliente)
+                .FirstOrDefaultAsync(p=>p.PedidoId==id);
         }
 
         public async Task<IEnumerable<Pedido>> GetPedidosAsync()
         {
-            return await _context.Pedidos.Include(p => p.FormaDePagamento).
-                Include(p => p.Cliente).Include(p => p.Endereco).ToListAsync();
+            return await _context.Pedidos
+                .Include(p => p.FormaDePagamento)
+                .Include(p => p.DetalhesDoPedido).ThenInclude(d => d.Produto)
+                .Include(p => p.Endereco).ThenInclude(e => e.Cliente)
+                .ToListAsync();
         }
 
         public async Task SavePedido()

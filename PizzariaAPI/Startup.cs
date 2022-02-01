@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using PizzariaAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace PizzariaAPI
 {
     public class Startup
@@ -32,18 +33,24 @@ namespace PizzariaAPI
             services.AddMvc();
             services.AddScoped<PizzariaContexto>();
 
-            services.AddTransient<IProdutosRepository, ProdutoRepository>();
-            services.AddTransient<IPedidoRepository, PedidoRepository>();
-            services.AddTransient<IEnderecoRepository, EnderecoRepository>();
-            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
-            services.AddTransient<IClienteRepository, ClienteRepository>();
-            services.AddTransient<IFormaDePagamentoRepository, FormaDePagamentoRepository>();
 
-            services.AddControllers();
+            services.AddScoped<IProdutosRepository, ProdutoRepository>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IFormaDePagamentoRepository, FormaDePagamentoRepository>();
+
+            services.AddControllers().AddNewtonsoftJson(options => 
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PizzariaAPI", Version = "v1" });
             });
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,3 +79,7 @@ namespace PizzariaAPI
         }
     }
 }
+
+
+//TODO: implementar autenticação
+//TODO: implementar DTOs (para isso, utilizar AutoMapper)

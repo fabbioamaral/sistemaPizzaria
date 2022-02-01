@@ -13,12 +13,12 @@ namespace PizzariaAPI.Models
         public string CEP { get; set; }
         public string Complemento { get; set; }
         public string Bairro { get; set; }
-        public string Cidade { get; set; }
+        public string Cidade { get; set; }  
         public string Referencia { get; set; }
         public int TaxaDeEntregaId { get; set; }
         public TaxaDeEntrega TaxaDeEntrega { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; }
+        public ICollection<Pedido> Pedidos { get; private set; }
     }
 }

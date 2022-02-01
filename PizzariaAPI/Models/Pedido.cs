@@ -14,8 +14,6 @@ namespace PizzariaAPI.Models
         public DateTime DataPedido { get; set; }
         public int FormaDePagamentoId { get; set; }
         public FormaDePagamento FormaDePagamento { get; set; }
-        public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
         public ICollection<PedidoProduto> DetalhesDoPedido { get; set; }
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }

@@ -9,6 +9,6 @@ namespace PizzariaAPI.Models
     {
         public int FormaDePagamentoId { get; set; }
         public string FormaDePagamentoNome { get; set; }
-        public ICollection<Pedido> Pedidos { get; set; }
+        public ICollection<Pedido> Pedidos { get; private set; }
     }
 }

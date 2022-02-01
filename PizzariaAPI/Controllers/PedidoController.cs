@@ -20,14 +20,14 @@ namespace PizzariaAPI.Controllers
             this.pedidoRepository = pedidoRepository;
         }
         
-        // GET: api/pedidos
+        // GET: /pedidos
         [HttpGet]
         public async Task<IEnumerable<Pedido>> GetPedidos()
         {
             return await pedidoRepository.GetPedidosAsync();
         }
 
-        // GET api/pedidos/{id}
+        // GET /pedidos/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Pedido>> GetPedido(int id)
         {
@@ -39,7 +39,7 @@ namespace PizzariaAPI.Controllers
             return pedido;
         }
 
-        // POST api/pedidos
+        // POST /pedidos
         [HttpPost]
         public async Task CriarPedido(Pedido pedido)
         {
@@ -47,7 +47,7 @@ namespace PizzariaAPI.Controllers
             await pedidoRepository.SavePedido();
         }
 
-        // DELETE api/pedidos
+        // DELETE /pedidos
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeletarPedido(int id)
         {

@@ -19,7 +19,7 @@ namespace PizzariaAPI.Controllers
             this.formaDePagamentoRepository = formaDePagamentoRepository;
         }
 
-        //GET: api/formasdepagamento
+        //GET: /formasdepagamento
         [HttpGet]
         public async Task<IEnumerable<FormaDePagamento>> GetFormasDePagamentoAsync()
         {

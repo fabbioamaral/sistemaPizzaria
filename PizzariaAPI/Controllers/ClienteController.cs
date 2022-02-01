@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PizzariaAPI.DTOs.Cliente;
 using PizzariaAPI.Models;
 using PizzariaAPI.Repositories;
 using System;
@@ -19,26 +20,26 @@ namespace PizzariaAPI.Controllers
             this.clienteRepository = clienteRepository;
         }
 
-        //GET: api/clientes
+        //GET: /clientes
         [HttpGet]
-        public async Task<IEnumerable<Cliente>> GetClientesAsync()
+        public async Task<ActionResult<ServiceResponse<ICollection<GetClienteDto>>>> GetClientesAsync()
         {
-            return await clienteRepository.GetClientesAsync();
+            return Ok(await clienteRepository.GetClientesAsync());
         }
 
-        //GET: api/clientes/{id} 
+        //GET: /clientes/{id} 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetClienteAsync(int id)
+        public async Task<ActionResult<ServiceResponse<GetClienteDto>>> GetClienteAsync(int id)
         {
             var cliente = await clienteRepository.GetClienteAsync(id);
 
             if (cliente == null)
                 return NotFound();
 
-            return cliente;
+            return Ok(cliente);
         }
 
-        //POST: api/clientes
+        //POST: /clientes
         [HttpPost]
         public async Task PostClienteAsync(Cliente cliente)
         {
@@ -46,27 +47,27 @@ namespace PizzariaAPI.Controllers
             await clienteRepository.SaveProduto();
         }
 
-        //PUT: api/clientes/{id}
-        [HttpPut("{id}")]
-        public async Task<ActionResult> PutClienteAsync(int id, Cliente cliente)
-        {
-            var clienteASerAtualizado = await clienteRepository.GetClienteAsync(id);
+        ////PUT: /clientes/{id}
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult> PutClienteAsync(int id, Cliente cliente)
+        //{
+        //    var clienteASerAtualizado = await clienteRepository.GetClienteAsync(id);
 
-            if (clienteASerAtualizado == null)
-                return NotFound();
+        //    if (clienteASerAtualizado == null)
+        //        return NotFound();
 
-            clienteASerAtualizado.ClienteNome = cliente.ClienteNome;
-            clienteASerAtualizado.ClienteTelefone = cliente.ClienteTelefone;
-            clienteASerAtualizado.ObservacaoInterna = cliente.ObservacaoInterna;
-            clienteASerAtualizado.DataUltimaAtualizacao = DateTime.Now;
+        //    clienteASerAtualizado.ClienteNome = cliente.ClienteNome;
+        //    clienteASerAtualizado.ClienteTelefone = cliente.ClienteTelefone;
+        //    clienteASerAtualizado.ObservacaoInterna = cliente.ObservacaoInterna;
+        //    clienteASerAtualizado.DataUltimaAtualizacao = DateTime.Now;
 
-            await clienteRepository.UpdateClienteAsync(clienteASerAtualizado);
-            await clienteRepository.SaveProduto();
+        //    await clienteRepository.UpdateClienteAsync(clienteASerAtualizado);
+        //    await clienteRepository.SaveProduto();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        //DELETE: api/clientes/{id}
+        //DELETE: /clientes/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteClienteAsync(int id)
         {

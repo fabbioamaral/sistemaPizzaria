@@ -18,12 +18,16 @@ namespace PizzariaAPI.Repositories
         }
         public async Task<Categoria> GetCategoriaAsync(int id)
         {
-            return await _context.Categorias.FirstOrDefaultAsync(c=>c.CategoriaId==id);
+            return await _context.Categorias
+                .Include(c => c.Produtos)
+                .FirstOrDefaultAsync(c=>c.CategoriaId==id);
         }
 
         public async Task<IEnumerable<Categoria>> GetCategoriasAsync()
         {
-            return await _context.Categorias.ToListAsync();
+            return await _context.Categorias
+                .Include(c => c.Produtos)
+                .ToListAsync();
         }
     }
 }

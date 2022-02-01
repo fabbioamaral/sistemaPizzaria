@@ -19,14 +19,14 @@ namespace PizzariaAPI.Controllers
             this.categoriaRepository = categoriaRepository;
         }
 
-        //GET: api/categorias
+        //GET: /categorias
         [HttpGet]
         public async Task<IEnumerable<Categoria>> GetCategoriasAsync()
         {
             return await categoriaRepository.GetCategoriasAsync();
         }
 
-        //GET: api/categorias/{id}
+        //GET: /categorias/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Categoria>> GetCategoriaAsync(int id)
         {

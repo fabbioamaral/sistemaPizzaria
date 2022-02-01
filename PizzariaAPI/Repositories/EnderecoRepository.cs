@@ -31,14 +31,18 @@ namespace PizzariaAPI.Repositories
 
         public async Task<Endereco> GetEnderecoAsync(int id)
         {
-            return await _context.Enderecos.Include(e => e.TaxaDeEntrega)
-                .Include(e => e.Cliente).FirstOrDefaultAsync(e=>e.EnderecoId==id);
+            return await _context.Enderecos
+                .Include(e => e.TaxaDeEntrega)
+                .Include(e => e.Cliente)
+                .FirstOrDefaultAsync(e=>e.EnderecoId==id);
         }
 
         public async Task<IEnumerable<Endereco>> GetEnderecosAsync()
         {
-            return await _context.Enderecos.Include(e => e.TaxaDeEntrega)
-                .Include(e => e.Cliente).ToListAsync();
+            return await _context.Enderecos
+                .Include(e => e.TaxaDeEntrega)
+                .Include(e => e.Cliente)
+                .ToListAsync();
         }
         public async Task UpdateEnderecoAsync(Endereco endereco)
         {

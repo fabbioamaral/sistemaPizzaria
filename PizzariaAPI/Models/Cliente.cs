@@ -11,8 +11,8 @@ namespace PizzariaAPI.Models
         public string ClienteNome { get; set; }
         public string ClienteTelefone { get; set; }
         public string ObservacaoInterna { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public DateTime DataUltimaAtualizacao { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.Now;
+        public DateTime DataUltimaAtualizacao { get; set; } = DateTime.Now;
         public ICollection<Endereco> Enderecos { get; set; }
     }
 }

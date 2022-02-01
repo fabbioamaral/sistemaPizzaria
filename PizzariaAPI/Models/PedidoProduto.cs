@@ -9,9 +9,9 @@ namespace PizzariaAPI.Models
     {
         public int PedidoProdutoId { get; set; }
         public int ProdutoId { get; set; }
-        public Produto Produto { get; set; }
-        public decimal DescontoNoItem { get; set; }
+        public Produto Produto { get; private set; }
+        public decimal DescontoNoItem { get; set; } = 0;
         public int PedidoId { get; set; }
-        public Pedido Pedido { get; set; }
+        public Pedido Pedido { get; private set; }
     }
 }

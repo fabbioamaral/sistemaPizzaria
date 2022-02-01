@@ -15,7 +15,7 @@ namespace PizzariaAPI.Data
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<FormaDePagamento> FormasDePagamento { get; set; }
-
+        public DbSet<PedidoProduto> PedidosProdutos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

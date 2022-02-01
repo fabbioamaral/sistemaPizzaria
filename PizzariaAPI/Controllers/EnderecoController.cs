@@ -17,14 +17,14 @@ namespace PizzariaAPI.Controllers
             this.enderecoRepository = enderecoRepository;
         }
 
-        //GET: api/enderecos
+        //GET: /enderecos
         [HttpGet]
         public async Task<IEnumerable<Endereco>> GetEnderecosAsync()
         {
             return await enderecoRepository.GetEnderecosAsync();
         }
 
-        //GET: api/enderecos/{id}
+        //GET: /enderecos/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Endereco>> GetEnderecoAsync(int id)
         {
@@ -36,7 +36,7 @@ namespace PizzariaAPI.Controllers
             return endereco;
         }
 
-        //POST: api/enderecos
+        //POST: /enderecos
         [HttpPost]
         public async Task PostEnderecoAsync(Endereco endereco)
         {
@@ -44,7 +44,7 @@ namespace PizzariaAPI.Controllers
             await enderecoRepository.SaveEndereco();
         }
 
-        //PUT: api/enderecos/{id}
+        //PUT: /enderecos/{id}
         [HttpPut("{id}")]
         public async Task<ActionResult> PutEnderecoAsync(int id,Endereco endereco)
         {
@@ -71,7 +71,7 @@ namespace PizzariaAPI.Controllers
             return NoContent();
         }
 
-        //DELETE: api/enderecos/id
+        //DELETE: /enderecos/id
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteEnderecoAsync(int id)
         {

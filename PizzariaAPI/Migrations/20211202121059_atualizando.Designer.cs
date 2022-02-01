@@ -10,8 +10,8 @@ using PizzariaAPI.Data;
 namespace PizzariaAPI.Migrations
 {
     [DbContext(typeof(PizzariaContexto))]
-    [Migration("20211102143131_one")]
-    partial class one
+    [Migration("20211202121059_atualizando")]
+    partial class atualizando
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -128,9 +128,6 @@ namespace PizzariaAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataPedido")
                         .HasColumnType("datetime2");
 
@@ -150,8 +147,6 @@ namespace PizzariaAPI.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("PedidoId");
-
-                    b.HasIndex("ClienteId");
 
                     b.HasIndex("EnderecoId");
 
@@ -182,7 +177,7 @@ namespace PizzariaAPI.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("PedidoProduto");
+                    b.ToTable("PedidosProdutos");
                 });
 
             modelBuilder.Entity("PizzariaAPI.Models.Produto", b =>
@@ -247,12 +242,6 @@ namespace PizzariaAPI.Migrations
 
             modelBuilder.Entity("PizzariaAPI.Models.Pedido", b =>
                 {
-                    b.HasOne("PizzariaAPI.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PizzariaAPI.Models.Endereco", "Endereco")
                         .WithMany("Pedidos")
                         .HasForeignKey("EnderecoId")
@@ -264,8 +253,6 @@ namespace PizzariaAPI.Migrations
                         .HasForeignKey("FormaDePagamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cliente");
 
                     b.Navigation("Endereco");
 

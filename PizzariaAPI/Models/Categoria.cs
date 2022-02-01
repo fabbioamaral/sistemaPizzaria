@@ -9,6 +9,6 @@ namespace PizzariaAPI.Models
     {
         public int CategoriaId { get; set; }
         public string CategoriaNome { get; set; }
-        public ICollection<Produto> Produtos { get; set; }
+        public ICollection<Produto> Produtos { get; private set; }
     }
 }

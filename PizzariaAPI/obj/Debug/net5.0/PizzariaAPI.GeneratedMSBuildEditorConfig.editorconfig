@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = PizzariaAPI
-build_property.ProjectDir = C:\Users\Fabio\Desktop\Coding\SistemaPizzaria\API\PizzariaAPI\PizzariaAPI\
+build_property.ProjectDir = C:\Users\Fabio\Desktop\Coding\c-sharp\SistemaPizzaria\API\PizzariaAPI\PizzariaAPI\

@@ -10,6 +10,6 @@ namespace PizzariaAPI.Models
         public int TaxaDeEntregaId { get; set; }
         public string Bairro { get; set; }
         public decimal Preco { get; set; }
-        public ICollection<Endereco> Enderecos { get; set; }
+        public ICollection<Endereco> Enderecos { get; private set; }
     }
 }

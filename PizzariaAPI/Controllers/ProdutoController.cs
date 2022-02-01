@@ -20,14 +20,14 @@ namespace PizzariaAPI.Controllers
             this.produtoRepository = produtoRepository;
         }
 
-        //GET: api/produtos
+        //GET: /produtos
         [HttpGet]
         public async Task<IEnumerable<Produto>> GetProdutosAsync()
         {
             return await produtoRepository.GetProdutosAsync();
         }
 
-        //GET: api/produtos/{id} 
+        //GET: /produtos/{id} 
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProdutoAsync(int id)
         {
@@ -39,7 +39,7 @@ namespace PizzariaAPI.Controllers
             return produto;
         }
 
-        //POST: api/produtos
+        //POST: /produtos
         [HttpPost]
         public async Task PostProdutoAsync(Produto produto)
         {
@@ -47,7 +47,7 @@ namespace PizzariaAPI.Controllers
             await produtoRepository.SaveProduto();
         }
 
-        //PUT: api/produtos/{id}
+        //PUT: /produtos/{id}
         [HttpPut("{id}")]
         public async Task<ActionResult> PutProdutoAsync(int id, Produto produto)
         {
@@ -68,7 +68,7 @@ namespace PizzariaAPI.Controllers
             return NoContent();
         }
 
-        //DELETE: api/produtos/{id}
+        //DELETE: /produtos/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProdutoAsync(int id)
         {
